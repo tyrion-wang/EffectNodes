@@ -11,11 +11,6 @@
 
 #include "GameHeader.h"
 #include "Laser.h"
-//#include "cocos2d.h"
-//using namespace cocos2d;
-//#include "cocos-ext.h"
-//using namespace cocos2d::extension;
-//#include "GLProgramWithUnifos.h"
 
 class LaserLayer : public CCLayer
 {

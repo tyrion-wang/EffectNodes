@@ -23,9 +23,7 @@ bool LaserLayer::init()
         
         CCDirector::sharedDirector()->setProjection(kCCDirectorProjection2D);
 
-        m_laser=new Laser();
-        m_laser->autorelease();
-        m_laser->init();
+        m_laser=Laser::create();
         this->addChild(m_laser);
         m_laser->setLaserStart(ccp(100,100));
         m_laser->setLaserEnd(ccp(winSize.width*0.5, winSize.height*0.5));

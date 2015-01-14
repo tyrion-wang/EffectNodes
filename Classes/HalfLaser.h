@@ -10,10 +10,6 @@
 #define __EffectNodes__HalfLaser__
 
 #include "GameHeader.h"
-#include "cocos2d.h"
-using namespace cocos2d;
-#include "cocos-ext.h"
-using namespace cocos2d::extension;
 #include "GLProgramWithUnifos.h"
 
 class HalfLaser:public CCSprite{
@@ -29,7 +25,7 @@ public:
     void draw();
     void update(float dt);
     void setPorN(float value){m_PorN=value;}
-    CGLProgramWithUnifos*m_program;
+    GLProgramWithUnifos* m_program;
     CCTexture2D*m_maskTex;
     CCTexture2D*m_maskTex2;
     CCTexture2D*m_noiseTex;

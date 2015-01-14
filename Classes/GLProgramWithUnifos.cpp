@@ -8,13 +8,53 @@
 
 #include "GLProgramWithUnifos.h"
 
-void CGLProgramWithUnifos::passUnifoValue1f(string unifoName,GLfloat v){
+GLProgramWithUnifos::GLProgramWithUnifos(){
+}
+
+GLProgramWithUnifos::~GLProgramWithUnifos(){
+}
+
+GLProgramWithUnifos* GLProgramWithUnifos::createWithFileName(const char* vShaderFilename, const char* fShaderFilename)
+{
+    GLProgramWithUnifos* pRet = new GLProgramWithUnifos();
+    if (pRet && pRet->initWithVertexShaderFilename(vShaderFilename, fShaderFilename))
+    {
+        pRet->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+    }
+    return pRet;
+}
+
+GLProgramWithUnifos* GLProgramWithUnifos::createWithByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
+{
+    GLProgramWithUnifos* pRet = new GLProgramWithUnifos();
+    if (pRet && pRet->initWithVertexShaderByteArray(vShaderByteArray, fShaderByteArray))
+    {
+        pRet->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+    }
+    return pRet;
+}
+
+void GLProgramWithUnifos::attachUniform(string unifoName){
+    m_unifoMap[unifoName] = glGetUniformLocation(this->getProgram(),unifoName.c_str());
+}
+
+void GLProgramWithUnifos::passUnifoValue1f(string unifoName,GLfloat v){
     glUniform1f(m_unifoMap[unifoName],v);
 }
-void CGLProgramWithUnifos::passUnifoValue1i(string unifoName,GLint v){
+
+void GLProgramWithUnifos::passUnifoValue1i(string unifoName,GLint v){
     glUniform1i(m_unifoMap[unifoName],v);
 }
-void CGLProgramWithUnifos::passUnifoValueMatrixNfv(string unifoName,const GLfloat *array,int arrayLen){
+
+void GLProgramWithUnifos::passUnifoValueMatrixNfv(string unifoName,const GLfloat *array,int arrayLen){
     assert(arrayLen==4||arrayLen==9||arrayLen==16);
     switch (arrayLen) {
         case 4:
@@ -30,9 +70,9 @@ void CGLProgramWithUnifos::passUnifoValueMatrixNfv(string unifoName,const GLfloa
             assert(false);
             break;
     }
-    
 }
-void CGLProgramWithUnifos::passUnifoValueNfv(string unifoName,const GLfloat*array,int arrayLen){
+
+void GLProgramWithUnifos::passUnifoValueNfv(string unifoName,const GLfloat*array,int arrayLen){
     assert(arrayLen>=1&&arrayLen<=4);
     switch (arrayLen) {
         case 1:
@@ -53,7 +93,8 @@ void CGLProgramWithUnifos::passUnifoValueNfv(string unifoName,const GLfloat*arra
     }
     
 }
-void CGLProgramWithUnifos::passUnifoValueNfvN(string unifoName,const GLfloat*array,int arrayLen,int arrayCount){
+
+void GLProgramWithUnifos::passUnifoValueNfvN(string unifoName,const GLfloat*array,int arrayLen,int arrayCount){
     assert(arrayLen>=1&&arrayLen<=4);
     switch (arrayLen) {
         case 1:
@@ -74,7 +115,8 @@ void CGLProgramWithUnifos::passUnifoValueNfvN(string unifoName,const GLfloat*arr
     }
     
 }
-void CGLProgramWithUnifos::passUnifoValueNiv(string unifoName,const GLint*array,int arrayLen){
+
+void GLProgramWithUnifos::passUnifoValueNiv(string unifoName,const GLint*array,int arrayLen){
     assert(arrayLen>=1&&arrayLen<=4);
     switch (arrayLen) {
         case 1:
@@ -95,12 +137,15 @@ void CGLProgramWithUnifos::passUnifoValueNiv(string unifoName,const GLint*array,
     }
     
 }
-void CGLProgramWithUnifos::passUnifoValueMatrixNfv(string unifoName,const vector<GLfloat>&valueList){
+
+void GLProgramWithUnifos::passUnifoValueMatrixNfv(string unifoName,const vector<GLfloat>&valueList){
     passUnifoValueMatrixNfv(unifoName, &valueList.front(), (int)valueList.size());
 }
-void CGLProgramWithUnifos::passUnifoValueNfv(string unifoName,const vector<GLfloat>&valueList){
+
+void GLProgramWithUnifos::passUnifoValueNfv(string unifoName,const vector<GLfloat>&valueList){
     passUnifoValueNfv(unifoName, &valueList.front(), (int)valueList.size());
 }
-void CGLProgramWithUnifos::passUnifoValueNiv(string unifoName,const vector<GLint>&valueList){
+
+void GLProgramWithUnifos::passUnifoValueNiv(string unifoName,const vector<GLint>&valueList){
     passUnifoValueNiv(unifoName, &valueList.front(), (int)valueList.size());
 }

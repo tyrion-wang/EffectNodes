@@ -28,12 +28,11 @@ HalfLaser::~HalfLaser(){
     if(m_maskTex2)m_maskTex2->release();
     if(m_noiseTex)m_noiseTex->release();
     if(m_noiseTex2)m_noiseTex2->release();
-    
 }
 
 bool HalfLaser::init(){
-    //lightTex
     if (CCSprite::initWithFile("LaserRes/light2.png")) {
+        //lightTex
         {
             ccTexParams texParams= {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
             this->getTexture()->setTexParameters(&texParams);
@@ -70,10 +69,7 @@ bool HalfLaser::init(){
         
         //create and set shader program
         {
-            GLchar * fragSource = (GLchar*) CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename("LaserRes/laser.fsh").c_str())->getCString();
-            CGLProgramWithUnifos* program = new CGLProgramWithUnifos();
-            program->autorelease();
-            program->initWithVertexShaderByteArray(ccPositionTextureColor_vert, fragSource);
+            GLProgramWithUnifos* program = GLProgramWithUnifos::createWithFileName("LaserRes/laser.vsh", "LaserRes/laser.fsh");
             //bind attribute
             program->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
             program->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
@@ -162,7 +158,7 @@ void HalfLaser::draw(){
         ccGLEnable(m_eGLServerState);
         //pass values for cocos2d-x build-in uniforms
         this->setShaderProgram(m_program);
-        CGLProgramWithUnifos*program=(CGLProgramWithUnifos*)this->getShaderProgram();
+        GLProgramWithUnifos*program=(GLProgramWithUnifos*)this->getShaderProgram();
         program->use();
         program->setUniformsForBuiltins();
         //pass values for my own uniforms

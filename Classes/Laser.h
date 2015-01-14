@@ -14,6 +14,8 @@
 class Laser:public CCNode
 {
 public:
+    CREATE_FUNC(Laser);
+    virtual bool init();
     HalfLaser* m_halfLaser1;
     HalfLaser* m_halfLaser2;
     HalfLaser* m_slimHalfLaser1;
@@ -21,7 +23,6 @@ public:
     CCPoint m_start;
     CCPoint m_end;
     Laser();
-    bool init();
     void setLaserStart(const CCPoint&start);
     void setLaserEnd(const CCPoint&end);
 };

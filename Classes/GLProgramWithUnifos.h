@@ -17,19 +17,16 @@ using namespace cocos2d;
 
 //if program1 and program2 have a uniform variable with the same name, the two variable's uniform ID (GLint) may be different.
 //so safe way is let each shader program hold his own uniform IDs.
-class CGLProgramWithUnifos:public CCGLProgram
+class GLProgramWithUnifos:public CCGLProgram
 {
 protected:
     map<string,GLint> m_unifoMap;
 public:
-    
-    CGLProgramWithUnifos(){
-    }
-    virtual ~CGLProgramWithUnifos(){
-    }
-    void attachUniform(string unifoName){
-        m_unifoMap[unifoName] = glGetUniformLocation(this->getProgram(),unifoName.c_str());
-    }
+    static GLProgramWithUnifos* createWithFileName(const char* vShaderFilename, const char* fShaderFilename);
+    static GLProgramWithUnifos* createWithByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
+    GLProgramWithUnifos();
+    ~GLProgramWithUnifos();
+    void attachUniform(string unifoName);
     void passUnifoValue1f(string unifoName,GLfloat v);
     void passUnifoValue1i(string unifoName,GLint v);
     void passUnifoValueMatrixNfv(string unifoName,const GLfloat *array,int arrayLen);

@@ -21,7 +21,7 @@ bool Laser::init(){
     m_halfLaser1 = HalfLaser::create();
     m_halfLaser1->setPorN(1);
     m_halfLaser1->setBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    m_halfLaser1->setScaleY(1.3);//(1.0);
+    m_halfLaser1->setScaleY(0.8);//(1.0);
     m_halfLaser1->m_kGlowColor=1.6;//1.0;
     m_halfLaser1->m_kLightColor=0.0;
     m_halfLaser1->m_noiseScale=2.2;//0.5;
@@ -31,7 +31,7 @@ bool Laser::init(){
     m_halfLaser2 = HalfLaser::create();
     m_halfLaser2->setPorN(-1);
     m_halfLaser2->setBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    m_halfLaser2->setScaleY(1.3);//(1.0);
+    m_halfLaser2->setScaleY(0.8);//(1.0);
     m_halfLaser2->m_kGlowColor=1.6;//1.0;
     m_halfLaser2->m_kLightColor=0.0;
     m_halfLaser2->m_noiseScale=2.2;//0.5;

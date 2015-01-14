@@ -17,6 +17,7 @@
 		01EA6B631A63B24100732948 /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01EA6B611A63B24100732948 /* MainLayer.cpp */; };
 		01EA6B681A63B49600732948 /* LaserLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01EA6B661A63B49600732948 /* LaserLayer.cpp */; };
 		01EA6B6B1A63B5F100732948 /* GLProgramWithUnifos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01EA6B691A63B5F100732948 /* GLProgramWithUnifos.cpp */; };
+		01EE382F1A66578200D28DA3 /* laser.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 01EE382E1A66578200D28DA3 /* laser.vsh */; };
 		15A3D8FF1682F7D5002FB0C5 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D88B1682F7D5002FB0C5 /* b2BroadPhase.cpp */; };
 		15A3D9001682F7D5002FB0C5 /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D88D1682F7D5002FB0C5 /* b2CollideCircle.cpp */; };
 		15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D88E1682F7D5002FB0C5 /* b2CollideEdge.cpp */; };
@@ -294,6 +295,7 @@
 		01EA6B671A63B49600732948 /* LaserLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserLayer.h; path = ../Classes/LaserLayer.h; sourceTree = "<group>"; };
 		01EA6B691A63B5F100732948 /* GLProgramWithUnifos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLProgramWithUnifos.cpp; path = ../Classes/GLProgramWithUnifos.cpp; sourceTree = "<group>"; };
 		01EA6B6A1A63B5F100732948 /* GLProgramWithUnifos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLProgramWithUnifos.h; path = ../Classes/GLProgramWithUnifos.h; sourceTree = "<group>"; };
+		01EE382E1A66578200D28DA3 /* laser.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = laser.vsh; path = ../Resources/LaserRes/laser.vsh; sourceTree = "<group>"; };
 		15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = ../../../cocos2dx/proj.ios/cocos2dx.xcodeproj; sourceTree = "<group>"; };
 		15A3D8891682F7D5002FB0C5 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		15A3D88B1682F7D5002FB0C5 /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
@@ -829,19 +831,27 @@
 			name = MainLayer;
 			sourceTree = "<group>";
 		};
-		01EA6B651A63B46A00732948 /* LaserLayer */ = {
+		01EA6B651A63B46A00732948 /* LaserDemo */ = {
+			isa = PBXGroup;
+			children = (
+				01EE38301A665DBB00D28DA3 /* Laser */,
+				01EA6B661A63B49600732948 /* LaserLayer.cpp */,
+				01EA6B671A63B49600732948 /* LaserLayer.h */,
+				01AC8ADD1A64F1FA004A3DB3 /* LaserScene.cpp */,
+				01AC8ADE1A64F1FA004A3DB3 /* LaserScene.h */,
+			);
+			name = LaserDemo;
+			sourceTree = "<group>";
+		};
+		01EE38301A665DBB00D28DA3 /* Laser */ = {
 			isa = PBXGroup;
 			children = (
 				01AC8AE41A650ECA004A3DB3 /* HalfLaser.cpp */,
 				01AC8AE51A650ECA004A3DB3 /* HalfLaser.h */,
 				01AC8AE71A65186D004A3DB3 /* Laser.cpp */,
 				01AC8AE81A65186D004A3DB3 /* Laser.h */,
-				01EA6B661A63B49600732948 /* LaserLayer.cpp */,
-				01EA6B671A63B49600732948 /* LaserLayer.h */,
-				01AC8ADD1A64F1FA004A3DB3 /* LaserScene.cpp */,
-				01AC8ADE1A64F1FA004A3DB3 /* LaserScene.h */,
 			);
-			name = LaserLayer;
+			name = Laser;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* ios */ = {
@@ -1338,7 +1348,7 @@
 			children = (
 				01AC8AEB1A651A72004A3DB3 /* Tools */,
 				01AC8AEA1A651A54004A3DB3 /* Define */,
-				01EA6B651A63B46A00732948 /* LaserLayer */,
+				01EA6B651A63B46A00732948 /* LaserDemo */,
 				01EA6B5C1A63AECA00732948 /* MainLayer */,
 				01EA6B5B1A63AEA100732948 /* MainScene */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
@@ -1452,6 +1462,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				01EE382E1A66578200D28DA3 /* laser.vsh */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				15A3D8871682F7D5002FB0C5 /* Box2D */,
 				15A3D93A1682F7F9002FB0C5 /* chipmunk */,
@@ -1878,6 +1889,7 @@
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
 				01AC8ADB1A64EF9A004A3DB3 /* button_dn.png in Resources */,
+				01EE382F1A66578200D28DA3 /* laser.vsh in Resources */,
 				01AC8ADC1A64EF9A004A3DB3 /* button.png in Resources */,
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
